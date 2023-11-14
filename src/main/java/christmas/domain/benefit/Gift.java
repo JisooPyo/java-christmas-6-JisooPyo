@@ -7,7 +7,6 @@ public class Gift {
     public Gift(int totalCost) {
         this.name = "없음";
         this.cost = 0;
-
         checkTotalCost(totalCost);
     }
 

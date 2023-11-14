@@ -1,5 +1,6 @@
 package christmas.domain.order;
 
+import christmas.domain.benefit.Benefit;
 import christmas.domain.benefit.Gift;
 import christmas.domain.date.EventDate;
 import christmas.domain.menu.DrinkMenu;
@@ -14,12 +15,14 @@ public class Orders {
     private final List<Order> orders;
     private final EventDate eventDate;
     private final Gift gift;
+    private final Benefit benefit;
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
         this.orders = order(orderInput);
         validate(orders);
         this.gift = new Gift(getTotalCost());
+        this.benefit = new Benefit(orders, getTotalCost());
     }
 
     private List<Order> order(String orderInput) {
