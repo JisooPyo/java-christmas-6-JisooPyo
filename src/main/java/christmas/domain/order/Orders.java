@@ -14,15 +14,13 @@ import java.util.Set;
 public class Orders {
     private final List<Order> orders;
     private final EventDate eventDate;
-    private final Gift gift;
     private final Benefit benefit;
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
         this.orders = order(orderInput);
         validate(orders);
-        this.gift = new Gift(getTotalCost());
-        this.benefit = new Benefit(orders, getTotalCost());
+        this.benefit = new Benefit(orders, getTotalCost(), eventDate);
     }
 
     private List<Order> order(String orderInput) {

@@ -38,4 +38,8 @@ public class EventDate {
             throw new IllegalArgumentException(CustomError.INVALID_DATE.getMessage());
         }
     }
+
+    public int getEventDate() {
+        return eventDate;
+    }
 }
