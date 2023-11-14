@@ -68,12 +68,12 @@
 
 ##### Discount
 
-- [ ] 할인 내역 구하기
-  - [ ] 크리스마스 디데이 할인 - ChristmasDiscount(@param 날짜)
-  - [ ] 요일에 따른 할인
-    - [ ] 평일 할인 - WeekdayDiscount(@param 주문내역)
-    - [ ] 주말 할인 - WeekendDiscount(@param 주문내역)
-  - [ ] 특별 할인 - SpecialDiscount(@param 날짜)
+- [x] 할인 내역 구하기
+  - [x] 크리스마스 디데이 할인 - ChristmasDiscount
+  - [x] 요일에 따른 할인 - DayDiscount
+    - [x] 평일 할인 - WeekdayDiscount
+    - [x] 주말 할인 - WeekendDiscount
+  - [x] 특별 할인 - SpecialDiscount
 
 ##### ChristmasDiscount
 

@@ -5,7 +5,9 @@ import christmas.domain.menu.DessertMenu;
 import christmas.domain.menu.MainMenu;
 import christmas.domain.order.Order;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DayDiscount {
     private final List<Order> orders;
@@ -16,12 +18,15 @@ public class DayDiscount {
         this.eventDate = eventDate;
     }
 
-    public int getDiscount() {
+    public Map<String, Integer> getDiscount() {
+        Map<String, Integer> dayDiscount = new HashMap<>();
         int date = eventDate.getEventDate();
         if (date % 7 == 1 || date % 7 == 2) {
-            return getWeekendDiscount();
+            dayDiscount.put("주말 할인", getWeekendDiscount());
+            return dayDiscount;
         }
-        return getWeekdayDiscount();
+        dayDiscount.put("평일 할인", getWeekdayDiscount());
+        return dayDiscount;
     }
 
     private int getWeekendDiscount() {
