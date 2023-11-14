@@ -9,30 +9,39 @@ import java.util.List;
 import java.util.Map;
 
 public class Benefit {
-    private final Map<String, Integer> benefits;
-    private final Gift gift;
-    private final Discount discount;
+    private final List<Order> orders;
+    private final int totalCost;
+    private final EventDate eventDate;
 
     public Benefit(List<Order> orders, int totalCost, EventDate eventDate) {
-        this.gift = new Gift(totalCost);
-        this.discount = new Discount(orders, eventDate);
-        this.benefits = getBenefits(orders, totalCost);
+        this.orders = orders;
+        this.totalCost = totalCost;
+        this.eventDate = eventDate;
     }
 
-    private Map<String, Integer> getBenefits(List<Order> orders, int totalCost) {
+    public Map<String, Integer> getBenefits() {
         Map<String, Integer> benefits = new HashMap<>();
         if (totalCost < 10000) {
             benefits.put("없음", 0);
             return benefits;
         }
-
+        addDiscount(benefits);
+        addGift(benefits);
+        return benefits;
     }
 
-    public int getTotalBenefits() {
-        int totalBenefits = 0;
-        for (Integer price : benefits.values()) {
-            totalBenefits += price;
+    private void addDiscount(Map<String, Integer> benefits) {
+        Discount discount = new Discount(orders, eventDate);
+        for (String key : discount.getTotalDiscount().keySet()) {
+            benefits.put(key, discount.getTotalDiscount().get(key));
         }
-        return totalBenefits;
     }
+
+    private void addGift(Map<String, Integer> benefits) {
+        Gift gift = new Gift(totalCost).getGift();
+        if (gift.getCost() != 0) {
+            benefits.put(gift.getName(), gift.getCost());
+        }
+    }
+
 }

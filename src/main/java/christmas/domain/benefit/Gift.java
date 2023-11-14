@@ -1,20 +1,26 @@
 package christmas.domain.benefit;
 
+import java.util.Map;
+
 public class Gift {
+    private int totalCost;
     private String name;
-    private int cost;
+    private Integer cost;
 
     public Gift(int totalCost) {
-        this.name = "없음";
-        this.cost = 0;
-        checkTotalCost(totalCost);
+        this.totalCost = totalCost;
     }
 
-    private void checkTotalCost(int totalCost) {
-        if (totalCost >= 120_000) {
-            this.name = "샴페인 1개";
-            this.cost = 25000;
+    public Gift(String name, Integer cost) {
+        this.name = name;
+        this.cost = cost;
+    }
+
+    public Gift getGift() {
+        if (totalCost >= 120000) {
+            return new Gift("샴페인 1개", 25000);
         }
+        return new Gift("없음", 0);
     }
 
     public String getName() {
