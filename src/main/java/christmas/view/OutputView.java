@@ -22,4 +22,9 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    private void showTotalOrderAmount(Orders orders) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(orders.getTotalCost() + "원");
+    }
 }
