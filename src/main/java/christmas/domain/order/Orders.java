@@ -20,7 +20,8 @@ public class Orders {
         validateLength(checkOrders);
         List<Order> checkedOrders = new ArrayList<>();
         for (int i = 0; i < checkOrders.length; i++) {
-
+            Order order = new Order(checkOrders[i]);
+            checkedOrders.add(order);
         }
         return checkedOrders;
     }
