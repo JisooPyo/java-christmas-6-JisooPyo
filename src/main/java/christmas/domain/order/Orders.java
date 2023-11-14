@@ -98,4 +98,8 @@ public class Orders {
         return orderCost;
     }
 
+    public int getTotalBenefitCost() {
+        return benefit.getBenefitsAmount() + gift.getCost();
+    }
+
 }
