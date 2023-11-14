@@ -29,6 +29,15 @@ public class Order {
     }
 
     private int findCount(String order) {
-        return 0;
+        int seperationIndex = order.indexOf("-");
+        String checkCount = order.substring(seperationIndex + 1);
+        if (Integer.parseInt(checkCount) < 1) {
+            throw new IllegalArgumentException(CustomError.INVALID_ORDER.getMessage());
+        }
+        return Integer.parseInt(checkCount);
+    }
+
+    public int getCount() {
+        return this.count;
     }
 }
