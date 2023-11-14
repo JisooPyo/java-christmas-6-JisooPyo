@@ -8,8 +8,8 @@ public class DecemberEventPlanner {
     private OutputView outputView;
 
     public DecemberEventPlanner() {
-        inputView = new InputView();
-        outputView = new OutputView();
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start() {
