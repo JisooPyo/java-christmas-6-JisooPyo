@@ -65,4 +65,12 @@ public class Orders {
         throw new IllegalArgumentException(CustomError.MUST_ADD_NON_DRINK.getMessage());
     }
 
+    public int getTotalCost() {
+        int totalCost = 0;
+        for (Order order : orders) {
+            totalCost += order.getMenu().getCost();
+        }
+        return totalCost;
+    }
+
 }
