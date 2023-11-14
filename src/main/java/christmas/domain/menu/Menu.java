@@ -6,16 +6,7 @@ public class Menu {
     private String name;
     private int cost;
 
-    private final AppetizerMenu appetizerMenu;
-    private final MainMenu mainMenu;
-    private final DessertMenu dessertMenu;
-    private final DrinkMenu drinkMenu;
-
     public Menu(String name) {
-        appetizerMenu = new AppetizerMenu();
-        mainMenu = new MainMenu();
-        dessertMenu = new DessertMenu();
-        drinkMenu = new DrinkMenu();
         validate(name);
     }
 
@@ -28,6 +19,7 @@ public class Menu {
     }
 
     private boolean findInAppetizers(String name) {
+        AppetizerMenu appetizerMenu = new AppetizerMenu();
         if (appetizerMenu.existsMenu(name)) {
             this.name = name;
             this.cost = appetizerMenu.getMenuCost(name);
@@ -37,6 +29,7 @@ public class Menu {
     }
 
     private boolean findInMains(String name) {
+        MainMenu mainMenu = new MainMenu();
         if (mainMenu.existsMenu(name)) {
             this.name = name;
             this.cost = mainMenu.getMenuCost(name);
@@ -46,6 +39,7 @@ public class Menu {
     }
 
     private boolean findInDessert(String name) {
+        DessertMenu dessertMenu = new DessertMenu();
         if (dessertMenu.existsMenu(name)) {
             this.name = name;
             this.cost = dessertMenu.getMenuCost(name);
@@ -55,6 +49,7 @@ public class Menu {
     }
 
     private boolean findInDrink(String name) {
+        DrinkMenu drinkMenu = new DrinkMenu();
         if (drinkMenu.existsMenu(name)) {
             this.name = name;
             this.cost = drinkMenu.getMenuCost(name);
