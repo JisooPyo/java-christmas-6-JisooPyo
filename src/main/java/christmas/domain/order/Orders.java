@@ -1,6 +1,7 @@
 package christmas.domain.order;
 
 import christmas.domain.date.EventDate;
+import christmas.domain.menu.DrinkMenu;
 import christmas.error.CustomError;
 
 import java.util.ArrayList;
@@ -55,6 +56,13 @@ public class Orders {
     }
 
     private void checkOnlyDrinks(List<Order> orders) {
+        DrinkMenu drinkMenu = new DrinkMenu();
+        for (Order order : orders) {
+            if (!drinkMenu.existsMenu(order.getMenu().getName())) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(CustomError.MUST_ADD_NON_DRINK.getMessage());
     }
 
 }
