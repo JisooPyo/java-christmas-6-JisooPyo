@@ -5,11 +5,11 @@ import christmas.error.CustomError;
 import java.util.regex.Pattern;
 
 public class EventDate {
-    private final int eventDate;
+    private final int date;
 
     public EventDate(String date) {
         validate(date);
-        this.eventDate = Integer.parseInt(date);
+        this.date = Integer.parseInt(date);
     }
 
     private void validate(String date) {
@@ -39,7 +39,7 @@ public class EventDate {
         }
     }
 
-    public int getEventDate() {
-        return eventDate;
+    public int getDate() {
+        return date;
     }
 }

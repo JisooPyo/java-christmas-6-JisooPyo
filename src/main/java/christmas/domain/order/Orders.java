@@ -1,5 +1,6 @@
 package christmas.domain.order;
 
+import christmas.domain.badge.Badge;
 import christmas.domain.benefit.Benefit;
 import christmas.domain.date.EventDate;
 import christmas.domain.menu.DrinkMenu;
@@ -9,14 +10,17 @@ import java.util.*;
 
 public class Orders {
     private final List<Order> orders;
+
     private final EventDate eventDate;
+
+    private final Benefit benefit;
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
         this.orders = order(orderInput);
         validate(orders);
+        this.benefit = new Benefit(orders, getTotalCost(), eventDate);
     }
-
     private List<Order> order(String orderInput) {
         String[] checkOrders = orderInput.split(",");
         List<Order> checkedOrders = new ArrayList<>();
@@ -72,8 +76,19 @@ public class Orders {
     }
 
     public Map<String, Integer> getBenefits() {
-        Benefit benefit = new Benefit(orders, getTotalCost(), eventDate);
         return benefit.getBenefits();
     }
 
+    public String getBadge() {
+        Badge badge = new Badge(benefit.getBenefitsAmount());
+        return badge.getBadge();
+    }
+
+    public EventDate getEventDate() {
+        return eventDate;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 }

@@ -10,7 +10,7 @@ public class ChristmasDiscount {
     }
 
     public int getDiscount() {
-        int date = eventDate.getEventDate();
+        int date = eventDate.getDate();
         if (1 <= date && date <= 25) {
             return 1000 + ((date - 1) * 100);
         }

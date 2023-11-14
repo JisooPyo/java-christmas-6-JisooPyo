@@ -10,7 +10,7 @@ public class SpecialDiscount {
     }
 
     public int getDiscount() {
-        int date = eventDate.getEventDate();
+        int date = eventDate.getDate();
         if (date % 7 == 3 || date == 25) {
             return 1000;
         }

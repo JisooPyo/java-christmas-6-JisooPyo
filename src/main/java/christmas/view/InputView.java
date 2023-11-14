@@ -6,10 +6,10 @@ import christmas.domain.order.Orders;
 
 public class InputView {
 
-    public void readInput() {
+    public Orders readInput() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
         EventDate eventDate = readDate();
-        Orders orders = readOrder(eventDate);
+        return readOrder(eventDate);
     }
 
     private EventDate readDate() {
