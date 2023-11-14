@@ -12,6 +12,8 @@ public class OutputView {
         showBenefits(orders);
         showGiftPrice(orders);
         showTotalBenefitCost(orders);
+        showExpectedPayCost(orders);
+        showBadge(orders);
     }
 
     private void showFirstLine(Orders orders) {
@@ -58,5 +60,13 @@ public class OutputView {
     private void showTotalBenefitCost(Orders orders) {
         System.out.println("\n<총혜택 금액>");
         System.out.println("-" + orders.getTotalBenefitCost() + "원");
+    }
+
+    private void showExpectedPayCost(Orders orders) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.println(orders.getExpectedPayCost()+"원");
+    }
+
+    private void showBadge(Orders orders) {
     }
 }

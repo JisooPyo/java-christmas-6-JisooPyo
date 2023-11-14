@@ -102,4 +102,8 @@ public class Orders {
         return benefit.getBenefitsAmount() + gift.getCost();
     }
 
+    public int getExpectedPayCost() {
+        return getOrderCost() - benefit.getBenefitsAmount();
+    }
+
 }
