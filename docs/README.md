@@ -4,7 +4,7 @@
 
 * DecemberEventPlanner
 
-- [ ] InputView 생성
+- [X] InputView 생성
 - [ ] OutputView 생성(@param InputView return값)
 
 #### View
