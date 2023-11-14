@@ -4,7 +4,9 @@ import christmas.domain.date.EventDate;
 import christmas.error.CustomError;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Orders {
     private final List<Order> orders;
@@ -43,7 +45,13 @@ public class Orders {
     }
 
     private void checkDuplicateMenu(List<Order> orders) {
-
+        Set<String> menus = new HashSet<>();
+        for (Order order : orders) {
+            menus.add(order.getMenu().getName());
+        }
+        if (menus.size() != orders.size()) {
+            throw new IllegalArgumentException(CustomError.INVALID_ORDER.getMessage());
+        }
     }
 
     private void checkOnlyDrinks(List<Order> orders) {

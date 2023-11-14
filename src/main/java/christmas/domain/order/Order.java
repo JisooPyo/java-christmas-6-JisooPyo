@@ -40,4 +40,8 @@ public class Order {
     public int getCount() {
         return this.count;
     }
+
+    public Menu getMenu() {
+        return menu;
+    }
 }

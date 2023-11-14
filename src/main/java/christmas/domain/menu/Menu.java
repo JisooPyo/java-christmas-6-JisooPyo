@@ -63,4 +63,7 @@ public class Menu {
         return false;
     }
 
+    public String getName() {
+        return name;
+    }
 }
