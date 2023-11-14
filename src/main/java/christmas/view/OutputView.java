@@ -44,7 +44,7 @@ public class OutputView {
 
     private void showBenefits(Orders orders) {
         System.out.println("\n<혜택 내역>");
-        if (orders.getDiscount().keySet().size() == 1) {
+        if (orders.getDiscount().keySet().size() == 0) {
             System.out.println("없음");
             return;
         }
@@ -63,8 +63,8 @@ public class OutputView {
 
     private void showTotalBenefitCost(Orders orders) {
         System.out.println("\n<총혜택 금액>");
-        System.out.println("-" +
-                decimalFormat.format(orders.getTotalBenefitCost()) + "원");
+        System.out.println(
+                decimalFormat.format(orders.getTotalBenefitCost() * (-1)) + "원");
     }
 
     private void showExpectedPayCost(Orders orders) {

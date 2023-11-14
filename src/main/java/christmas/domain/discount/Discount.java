@@ -18,10 +18,21 @@ public class Discount {
 
     public Map<String, Integer> getTotalDiscount() {
         Map<String, Integer> totalDiscount = new HashMap<>();
+        if (!isMoreThanTenThousand()) {
+            return totalDiscount;
+        }
         addChristmasDiscount(totalDiscount);
         addDayDiscount(totalDiscount);
         addSpecialDiscount(totalDiscount);
         return totalDiscount;
+    }
+
+    private boolean isMoreThanTenThousand() {
+        int cost = 0;
+        for (Order order : orders) {
+            cost += order.getMenu().getCost() * order.getCount();
+        }
+        return cost >= 10000;
     }
 
     private void addChristmasDiscount(Map<String, Integer> totalDiscount) {

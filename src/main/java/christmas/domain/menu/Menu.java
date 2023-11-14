@@ -47,8 +47,8 @@ public class Menu {
 
     private boolean findInDessert(String name) {
         if (dessertMenu.existsMenu(name)) {
-            this.name= name;
-            this.cost=dessertMenu.getMenuCost(name);
+            this.name = name;
+            this.cost = dessertMenu.getMenuCost(name);
             return true;
         }
         return false;
@@ -56,8 +56,8 @@ public class Menu {
 
     private boolean findInDrink(String name) {
         if (drinkMenu.existsMenu(name)) {
-            this.name= name;
-            this.cost=drinkMenu.getMenuCost(name);
+            this.name = name;
+            this.cost = drinkMenu.getMenuCost(name);
             return true;
         }
         return false;
