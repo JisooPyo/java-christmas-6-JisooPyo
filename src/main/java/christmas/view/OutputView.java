@@ -49,15 +49,15 @@ public class OutputView {
             return;
         }
         for (String key : orders.getDiscount().keySet()) {
-            System.out.println(key + ": -" +
-                    decimalFormat.format(orders.getDiscount().get(key)) + "원");
+            System.out.println(key + ": " +
+                    decimalFormat.format(orders.getDiscount().get(key) * (-1)) + "원");
         }
     }
 
     private void showGiftPrice(Orders orders) {
         int giftPrice = orders.getGiftPrice();
         if (giftPrice != 0) {
-            System.out.println("증정 이벤트: -" + decimalFormat.format(giftPrice) + "원");
+            System.out.println("증정 이벤트: " + decimalFormat.format(giftPrice * (-1)) + "원");
         }
     }
 
