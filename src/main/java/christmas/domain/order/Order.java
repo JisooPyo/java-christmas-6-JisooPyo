@@ -23,7 +23,9 @@ public class Order {
     }
 
     private Menu findMenu(String order) {
-        return null;
+        int seperationIndex = order.indexOf("-");
+        String checkMenu = order.substring(0, seperationIndex);
+        return new Menu(checkMenu);
     }
 
     private int findCount(String order) {
