@@ -10,6 +10,7 @@ public class DecemberEventPlanner {
 
     public DecemberEventPlanner() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start() {

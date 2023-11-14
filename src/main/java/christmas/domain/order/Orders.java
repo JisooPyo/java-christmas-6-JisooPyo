@@ -2,6 +2,7 @@ package christmas.domain.order;
 
 import christmas.domain.badge.Badge;
 import christmas.domain.benefit.Benefit;
+import christmas.domain.benefit.Gift;
 import christmas.domain.date.EventDate;
 import christmas.domain.menu.DrinkMenu;
 import christmas.error.CustomError;
@@ -10,17 +11,18 @@ import java.util.*;
 
 public class Orders {
     private final List<Order> orders;
-
     private final EventDate eventDate;
-
     private final Benefit benefit;
+    private final Gift gift;
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
         this.orders = order(orderInput);
         validate(orders);
-        this.benefit = new Benefit(orders, getTotalCost(), eventDate);
+        this.benefit = new Benefit(orders, eventDate);
+        this.gift = getGift();
     }
+
     private List<Order> order(String orderInput) {
         String[] checkOrders = orderInput.split(",");
         List<Order> checkedOrders = new ArrayList<>();
@@ -67,14 +69,6 @@ public class Orders {
         throw new IllegalArgumentException(CustomError.MUST_ADD_NON_DRINK.getMessage());
     }
 
-    public int getTotalCost() {
-        int totalCost = 0;
-        for (Order order : orders) {
-            totalCost += order.getMenu().getCost();
-        }
-        return totalCost;
-    }
-
     public Map<String, Integer> getBenefits() {
         return benefit.getBenefits();
     }
@@ -91,4 +85,17 @@ public class Orders {
     public List<Order> getOrders() {
         return orders;
     }
+
+    public Gift getGift() {
+        return new Gift(getOrderCost());
+    }
+
+    public int getOrderCost() {
+        int orderCost = 0;
+        for (Order order : orders) {
+            orderCost += order.getMenu().getCost() * order.getCount();
+        }
+        return orderCost;
+    }
+
 }

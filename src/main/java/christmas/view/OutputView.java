@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.benefit.Gift;
 import christmas.domain.order.Order;
 import christmas.domain.order.Orders;
 
@@ -8,6 +9,9 @@ public class OutputView {
         showFirstLine(orders);
         showOrderMenu(orders);
         showTotalOrderAmount(orders);
+        showGift(orders);
+        showBenefits(orders);
+        showGiftPrice(orders);
     }
 
     private void showFirstLine(Orders orders) {
@@ -25,6 +29,29 @@ public class OutputView {
 
     private void showTotalOrderAmount(Orders orders) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(orders.getTotalCost() + "원");
+        System.out.println(orders.getOrderCost() + "원\n");
+    }
+
+    private void showGift(Orders orders) {
+        System.out.println("<증정 메뉴>");
+        System.out.println(orders.getGift().getName() + "\n");
+    }
+
+    private void showBenefits(Orders orders) {
+        System.out.println("<혜택 내역>");
+        if (orders.getBenefits().keySet().size() == 1) {
+            System.out.println("없음");
+            return;
+        }
+        for (String key : orders.getBenefits().keySet()) {
+            System.out.println(key + ": -" + orders.getBenefits().get(key) + "원");
+        }
+    }
+
+    private void showGiftPrice(Orders orders) {
+        int giftPrice = orders.getGift().getCost();
+        if (giftPrice != 0) {
+            System.out.println("증정 이벤트: -" + giftPrice + "원");
+        }
     }
 }

@@ -12,11 +12,11 @@ public class Menu {
     private final DrinkMenu drinkMenu;
 
     public Menu(String name) {
-        validate(name);
         appetizerMenu = new AppetizerMenu();
         mainMenu = new MainMenu();
         dessertMenu = new DessertMenu();
         drinkMenu = new DrinkMenu();
+        validate(name);
     }
 
     private void validate(String name) {
