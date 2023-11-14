@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Discount {
-    private final ChristmasDiscount christmasDiscount;
-    private final DayDiscount dayDiscount;
-    private final SpecialDiscount specialDiscount;
+    private final List<Order> orders;
+    private final EventDate eventDate;
 
     public Discount(List<Order> orders, EventDate eventDate) {
-        christmasDiscount = new ChristmasDiscount(eventDate);
-        dayDiscount = new DayDiscount(orders, eventDate);
-        specialDiscount = new SpecialDiscount(eventDate);
+        this.orders = orders;
+        this.eventDate = eventDate;
     }
 
     public Map<String, Integer> getTotalDiscount() {
@@ -27,6 +25,7 @@ public class Discount {
     }
 
     private void addChristmasDiscount(Map<String, Integer> totalDiscount) {
+        ChristmasDiscount christmasDiscount = new ChristmasDiscount(eventDate);
         int discount = christmasDiscount.getDiscount();
         if (discount != 0) {
             totalDiscount.put("크리스마스 디데이 할인", discount);
@@ -34,6 +33,7 @@ public class Discount {
     }
 
     private void addDayDiscount(Map<String, Integer> totalDiscount) {
+        DayDiscount dayDiscount = new DayDiscount(orders, eventDate);
         String day = "";
         int discount = 0;
         for (String key : dayDiscount.getDiscount().keySet()) {
@@ -44,6 +44,7 @@ public class Discount {
     }
 
     private void addSpecialDiscount(Map<String, Integer> totalDiscount) {
+        SpecialDiscount specialDiscount = new SpecialDiscount(eventDate);
         int discount = specialDiscount.getDiscount();
         if (discount != 0) {
             totalDiscount.put("특별 할인", discount);

@@ -1,9 +1,7 @@
-package christmas.domain.benefit;
+package christmas.domain.gift;
 
 public class Gift {
     private int totalCost;
-    private String name;
-    private Integer cost;
 
     public Gift(int totalCost) {
         this.totalCost = totalCost;

@@ -7,7 +7,7 @@ public class Badge {
         this.benefitAmount = benefitAmount;
     }
 
-    public String getBadge() {
+    public String getName() {
         if (benefitAmount >= 20000) {
             return BadgeEnum.SANTA.getName();
         }

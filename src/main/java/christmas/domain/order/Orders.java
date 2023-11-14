@@ -1,9 +1,9 @@
 package christmas.domain.order;
 
 import christmas.domain.badge.Badge;
-import christmas.domain.benefit.Benefit;
-import christmas.domain.benefit.Gift;
 import christmas.domain.date.EventDate;
+import christmas.domain.discount.Discount;
+import christmas.domain.gift.Gift;
 import christmas.domain.menu.DrinkMenu;
 import christmas.error.CustomError;
 
@@ -12,15 +12,11 @@ import java.util.*;
 public class Orders {
     private final List<Order> orders;
     private final EventDate eventDate;
-    private final Benefit benefit;
-    private final Gift gift;
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
         this.orders = order(orderInput);
         validate(orders);
-        this.benefit = new Benefit(orders, eventDate);
-        this.gift = getGift();
     }
 
     private List<Order> order(String orderInput) {
@@ -69,20 +65,12 @@ public class Orders {
         throw new IllegalArgumentException(CustomError.MUST_ADD_NON_DRINK.getMessage());
     }
 
-    public Map<String, Integer> getBenefits() {
-        return benefit.getBenefits();
-    }
-
     public EventDate getEventDate() {
         return eventDate;
     }
 
     public List<Order> getOrders() {
         return orders;
-    }
-
-    public Gift getGift() {
-        return new Gift(getOrderCost());
     }
 
     public int getOrderCost() {
@@ -93,17 +81,39 @@ public class Orders {
         return orderCost;
     }
 
+    public String getGift() {
+        Gift gift = new Gift(getOrderCost());
+        return gift.getName();
+    }
+
+    public Map<String, Integer> getDiscount() {
+        Discount discount = new Discount(orders, eventDate);
+        return discount.getTotalDiscount();
+    }
+
+    public int getGiftPrice() {
+        Gift gift = new Gift(getOrderCost());
+        return gift.getCost();
+    }
+
     public int getTotalBenefitCost() {
-        return benefit.getBenefitsAmount() + gift.getCost();
+        return getAllDiscountCost() + getGiftPrice();
+    }
+
+    public int getExpectedPayCost() {
+        return getOrderCost() - getAllDiscountCost();
     }
 
     public String getBadge() {
         Badge badge = new Badge(getTotalBenefitCost());
-        return badge.getBadge();
+        return badge.getName();
     }
 
-    public int getExpectedPayCost() {
-        return getOrderCost() - benefit.getBenefitsAmount();
+    private int getAllDiscountCost() {
+        int allDiscount = 0;
+        for (String key : getDiscount().keySet()) {
+            allDiscount += getDiscount().get(key);
+        }
+        return allDiscount;
     }
-
 }
