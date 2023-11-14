@@ -20,7 +20,7 @@ public class EventDate {
 
     private void consistsOfNumber(String date) {
         if (!Pattern.matches("^[0-9]+$", date)) {
-            throw new IllegalArgumentException(CustomError.INPUT_MUST_NUMBER.getMessage());
+            throw new IllegalArgumentException(CustomError.INVALID_DATE.getMessage());
         }
     }
 

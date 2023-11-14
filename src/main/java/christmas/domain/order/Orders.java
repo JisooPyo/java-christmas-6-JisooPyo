@@ -45,7 +45,7 @@ public class Orders {
             count += order.getCount();
         }
         if (count > 20) {
-            throw new IllegalArgumentException(CustomError.INVALID_ORDER.getMessage());
+            throw new IllegalArgumentException(CustomError.AVAILABLE_MAX_TWENTY.getMessage());
         }
     }
 
