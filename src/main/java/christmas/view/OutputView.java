@@ -64,9 +64,11 @@ public class OutputView {
 
     private void showExpectedPayCost(Orders orders) {
         System.out.println("\n<할인 후 예상 결제 금액>");
-        System.out.println(orders.getExpectedPayCost()+"원");
+        System.out.println(orders.getExpectedPayCost() + "원");
     }
 
     private void showBadge(Orders orders) {
+        System.out.println("\n<12월 이벤트 배지>");
+        System.out.println(orders.getBadge());
     }
 }

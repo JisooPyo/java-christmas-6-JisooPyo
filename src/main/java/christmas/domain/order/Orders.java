@@ -73,11 +73,6 @@ public class Orders {
         return benefit.getBenefits();
     }
 
-    public String getBadge() {
-        Badge badge = new Badge(benefit.getBenefitsAmount());
-        return badge.getBadge();
-    }
-
     public EventDate getEventDate() {
         return eventDate;
     }
@@ -100,6 +95,11 @@ public class Orders {
 
     public int getTotalBenefitCost() {
         return benefit.getBenefitsAmount() + gift.getCost();
+    }
+
+    public String getBadge() {
+        Badge badge = new Badge(getTotalBenefitCost());
+        return badge.getBadge();
     }
 
     public int getExpectedPayCost() {
