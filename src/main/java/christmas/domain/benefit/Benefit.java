@@ -30,6 +30,14 @@ public class Benefit {
         return benefits;
     }
 
+    public int getBenefitsAmount() {
+        int totalBenefitAmount = 0;
+        for (String key : getBenefits().keySet()) {
+            totalBenefitAmount += getBenefits().get(key);
+        }
+        return totalBenefitAmount;
+    }
+
     private void addDiscount(Map<String, Integer> benefits) {
         Discount discount = new Discount(orders, eventDate);
         for (String key : discount.getTotalDiscount().keySet()) {
