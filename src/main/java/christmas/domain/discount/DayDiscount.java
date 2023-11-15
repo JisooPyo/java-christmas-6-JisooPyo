@@ -20,8 +20,7 @@ public class DayDiscount {
 
     public Map<String, Integer> getDiscount() {
         Map<String, Integer> dayDiscount = new HashMap<>();
-        int date = eventDate.getDate();
-        if ((date % 7 == 1 || date % 7 == 2) && getWeekendDiscount() != 0) {
+        if (eventDate.isWeekend() && getWeekendDiscount() != 0) {
             dayDiscount.put("주말 할인", getWeekendDiscount());
             return dayDiscount;
         }

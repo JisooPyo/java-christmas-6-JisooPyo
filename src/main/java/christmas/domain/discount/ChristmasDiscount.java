@@ -12,9 +12,8 @@ public class ChristmasDiscount {
     }
 
     public int getDiscount() {
-        int date = eventDate.getDate();
-        if (1 <= date && date <= 25) {
-            return startDiscount + ((date - 1) * dayDiscount);
+        if (eventDate.withinChristmasDiscountRange()) {
+            return startDiscount + ((eventDate.getDate() - 1) * dayDiscount);
         }
         return 0;
     }

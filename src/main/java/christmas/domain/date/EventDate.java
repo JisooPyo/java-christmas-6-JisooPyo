@@ -42,4 +42,16 @@ public class EventDate {
     public int getDate() {
         return date;
     }
+
+    public boolean withinChristmasDiscountRange() {
+        return 1 <= date && date <= 25;
+    }
+
+    public boolean isWeekend() {
+        return date % 7 == 1 || date % 7 == 2;
+    }
+
+    public boolean withinSpecialDiscountRange() {
+        return date % 7 == 3 || date == 25;
+    }
 }

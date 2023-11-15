@@ -11,8 +11,7 @@ public class SpecialDiscount {
     }
 
     public int getDiscount() {
-        int date = eventDate.getDate();
-        if (date % 7 == 3 || date == 25) {
+        if (eventDate.withinSpecialDiscountRange()) {
             return discountAmount;
         }
         return 0;
