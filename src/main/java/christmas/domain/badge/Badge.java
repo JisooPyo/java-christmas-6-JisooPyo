@@ -8,13 +8,13 @@ public class Badge {
     }
 
     public String getName() {
-        if (benefitAmount >= 20000) {
+        if (benefitAmount >= BadgeEnum.SANTA.getBasis()) {
             return BadgeEnum.SANTA.getName();
         }
-        if (benefitAmount >= 10000) {
+        if (benefitAmount >= BadgeEnum.TREE.getBasis()) {
             return BadgeEnum.TREE.getName();
         }
-        if (benefitAmount >= 5000) {
+        if (benefitAmount >= BadgeEnum.STAR.getBasis()) {
             return BadgeEnum.STAR.getName();
         }
         return "없음";

@@ -12,6 +12,7 @@ import java.util.*;
 public class Orders {
     private final List<Order> orders;
     private final EventDate eventDate;
+    private final int maxOrder = 20;
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
@@ -40,8 +41,8 @@ public class Orders {
         for (Order order : orders) {
             count += order.getCount();
         }
-        if (count > 20) {
-            throw new IllegalArgumentException(CustomError.AVAILABLE_MAX_TWENTY.getMessage());
+        if (count > maxOrder) {
+            throw new IllegalArgumentException(CustomError.EXCEED_MAXIMUM_ORDER.getMessage());
         }
     }
 

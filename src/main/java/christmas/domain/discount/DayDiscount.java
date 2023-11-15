@@ -12,6 +12,7 @@ import java.util.Map;
 public class DayDiscount {
     private final List<Order> orders;
     private final EventDate eventDate;
+    private final int discountAmount = 2023;
 
     public DayDiscount(List<Order> orders, EventDate eventDate) {
         this.orders = orders;
@@ -36,7 +37,7 @@ public class DayDiscount {
         int discount = 0;
         for (Order order : orders) {
             if (mainMenu.existsMenu(order.getMenu().getName())) {
-                discount += order.getCount() * 2023;
+                discount += order.getCount() * discountAmount;
             }
         }
         return discount;
@@ -47,7 +48,7 @@ public class DayDiscount {
         int discount = 0;
         for (Order order : orders) {
             if (dessertMenu.existsMenu(order.getMenu().getName())) {
-                discount += order.getCount() * 2023;
+                discount += order.getCount() * discountAmount;
             }
         }
         return discount;
