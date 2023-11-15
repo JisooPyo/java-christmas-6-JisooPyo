@@ -36,6 +36,10 @@ public class Order {
         return Integer.parseInt(checkCount);
     }
 
+    public int getCost() {
+        return this.menuEnum.getCost() * this.count;
+    }
+
     public int getCount() {
         return this.count;
     }

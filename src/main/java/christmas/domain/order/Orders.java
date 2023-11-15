@@ -12,12 +12,16 @@ import java.util.*;
 public class Orders {
     private final List<Order> orders;
     private final EventDate eventDate;
+    private final Discount discount;
     private final int maxOrder = 20;
+    private final Gift gift = new Gift(getOrdersCost());
+    private final Badge badge = new Badge(getTotalBenefitCost());
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
         this.orders = order(orderInput);
         validate(orders);
+        this.discount = new Discount(orders, eventDate);
     }
 
     private List<Order> order(String orderInput) {
@@ -65,34 +69,23 @@ public class Orders {
         throw new IllegalArgumentException(CustomError.MUST_ADD_NON_DRINK.getMessage());
     }
 
-    public EventDate getEventDate() {
-        return eventDate;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public int getOrderCost() {
-        int orderCost = 0;
+    public int getOrdersCost() {
+        int ordersCost = 0;
         for (Order order : orders) {
-            orderCost += order.getMenu().getCost() * order.getCount();
+            ordersCost += order.getCost();
         }
-        return orderCost;
-    }
-
-    public String getGift() {
-        Gift gift = new Gift(getOrderCost());
-        return gift.getName();
+        return ordersCost;
     }
 
     public Map<String, Integer> getDiscount() {
-        Discount discount = new Discount(orders, eventDate);
         return discount.getTotalDiscount();
     }
 
+    public String getGift() {
+        return gift.getName();
+    }
+
     public int getGiftPrice() {
-        Gift gift = new Gift(getOrderCost());
         return gift.getCost();
     }
 
@@ -101,19 +94,22 @@ public class Orders {
     }
 
     public int getExpectedPayCost() {
-        return getOrderCost() - getAllDiscountCost();
+        return getOrdersCost() - getAllDiscountCost();
     }
 
     public String getBadge() {
-        Badge badge = new Badge(getTotalBenefitCost());
         return badge.getName();
     }
 
     private int getAllDiscountCost() {
-        int allDiscount = 0;
-        for (String key : getDiscount().keySet()) {
-            allDiscount += getDiscount().get(key);
-        }
-        return allDiscount;
+        return discount.getTotalDiscountPrice();
+    }
+
+    public EventDate getEventDate() {
+        return eventDate;
+    }
+
+    public List<Order> getOrders() {
+        return Collections.unmodifiableList(orders);
     }
 }

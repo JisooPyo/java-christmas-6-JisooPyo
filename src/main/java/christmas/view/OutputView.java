@@ -34,7 +34,7 @@ public class OutputView {
 
     private void showTotalOrderAmount(Orders orders) {
         System.out.println("\n<할인 전 총주문 금액>");
-        System.out.println(decimalFormat.format(orders.getOrderCost()) + "원");
+        System.out.println(decimalFormat.format(orders.getOrdersCost()) + "원");
     }
 
     private void showGift(Orders orders) {

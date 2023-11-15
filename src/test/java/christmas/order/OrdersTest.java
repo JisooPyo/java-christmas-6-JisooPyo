@@ -5,7 +5,6 @@ import christmas.domain.order.Orders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -51,7 +50,7 @@ public class OrdersTest {
         int expectedPrice = 6000 * 1 + 5500 * 2 + 55000 * 1 + 5000 * 1 + 60000;
 
         orders = new Orders(orderInput, eventDate);
-        assertEquals(expectedPrice, orders.getOrderCost());
+        assertEquals(expectedPrice, orders.getOrdersCost());
     }
 
     @DisplayName("할인 전 총 주문 금액이 12만원 이상일 때 샴페인 증정 테스트")
