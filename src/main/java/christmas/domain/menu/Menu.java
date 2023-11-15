@@ -3,63 +3,31 @@ package christmas.domain.menu;
 import christmas.error.CustomError;
 
 public class Menu {
-    private String name;
-    private int cost;
+    private final String name;
+    private final TypeEnum type;
+    private final int cost;
 
     public Menu(String name) {
-        validate(name);
+        MenuEnum menuEnum = findMenu(name);
+        this.name = menuEnum.getName();
+        this.type = menuEnum.getType();
+        this.cost = menuEnum.getCost();
     }
 
-    private void validate(String name) {
-        if (findInAppetizers(name)) return;
-        if (findInMains(name)) return;
-        if (findInDessert(name)) return;
-        if (findInDrink(name)) return;
-        throw new IllegalArgumentException(CustomError.INVALID_ORDER.getMessage());
-    }
-
-    private boolean findInAppetizers(String name) {
-        AppetizerMenu appetizerMenu = new AppetizerMenu();
-        if (appetizerMenu.existsMenu(name)) {
-            this.name = name;
-            this.cost = appetizerMenu.getMenuCost(name);
-            return true;
+    private MenuEnum findMenu(String name) {
+        MenuEnum menuEnum = MenuEnum.getMenuEnum(name);
+        if (menuEnum == null) {
+            throw new IllegalArgumentException(CustomError.INVALID_ORDER.getMessage());
         }
-        return false;
-    }
-
-    private boolean findInMains(String name) {
-        MainMenu mainMenu = new MainMenu();
-        if (mainMenu.existsMenu(name)) {
-            this.name = name;
-            this.cost = mainMenu.getMenuCost(name);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean findInDessert(String name) {
-        DessertMenu dessertMenu = new DessertMenu();
-        if (dessertMenu.existsMenu(name)) {
-            this.name = name;
-            this.cost = dessertMenu.getMenuCost(name);
-            return true;
-        }
-        return false;
-    }
-
-    private boolean findInDrink(String name) {
-        DrinkMenu drinkMenu = new DrinkMenu();
-        if (drinkMenu.existsMenu(name)) {
-            this.name = name;
-            this.cost = drinkMenu.getMenuCost(name);
-            return true;
-        }
-        return false;
+        return menuEnum;
     }
 
     public String getName() {
         return name;
+    }
+
+    public TypeEnum getType() {
+        return type;
     }
 
     public int getCost() {

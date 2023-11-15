@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 public class Order {
     private final Menu menu;
-
     private final int count;
 
     public Order(String order) {

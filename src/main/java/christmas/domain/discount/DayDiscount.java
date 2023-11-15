@@ -1,8 +1,7 @@
 package christmas.domain.discount;
 
 import christmas.domain.date.EventDate;
-import christmas.domain.menu.DessertMenu;
-import christmas.domain.menu.MainMenu;
+import christmas.domain.menu.TypeEnum;
 import christmas.domain.order.Order;
 
 import java.util.HashMap;
@@ -33,10 +32,9 @@ public class DayDiscount {
     }
 
     private int getWeekendDiscount() {
-        MainMenu mainMenu = new MainMenu();
         int discount = 0;
         for (Order order : orders) {
-            if (mainMenu.existsMenu(order.getMenu().getName())) {
+            if (order.getMenu().getType().equals(TypeEnum.MAIN)) {
                 discount += order.getCount() * discountAmount;
             }
         }
@@ -44,10 +42,9 @@ public class DayDiscount {
     }
 
     private int getWeekdayDiscount() {
-        DessertMenu dessertMenu = new DessertMenu();
         int discount = 0;
         for (Order order : orders) {
-            if (dessertMenu.existsMenu(order.getMenu().getName())) {
+            if (order.getMenu().getType().equals(TypeEnum.DESSERT)) {
                 discount += order.getCount() * discountAmount;
             }
         }

@@ -4,7 +4,7 @@ import christmas.domain.badge.Badge;
 import christmas.domain.date.EventDate;
 import christmas.domain.discount.Discount;
 import christmas.domain.gift.Gift;
-import christmas.domain.menu.DrinkMenu;
+import christmas.domain.menu.TypeEnum;
 import christmas.error.CustomError;
 
 import java.util.*;
@@ -57,9 +57,8 @@ public class Orders {
     }
 
     private void checkOnlyDrinks(List<Order> orders) {
-        DrinkMenu drinkMenu = new DrinkMenu();
         for (Order order : orders) {
-            if (!drinkMenu.existsMenu(order.getMenu().getName())) {
+            if (!(order.getMenu().getType().equals(TypeEnum.DRINK))) {
                 return;
             }
         }
