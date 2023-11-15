@@ -1,7 +1,7 @@
 package christmas.domain.gift;
 
 public class Gift {
-    private int totalCost;
+    private final int totalCost;
 
     public Gift(int totalCost) {
         this.totalCost = totalCost;
