@@ -56,6 +56,18 @@ public class DiscountTest {
         assertEquals(price, discount.getTotalDiscount().getOrDefault("특별 할인", 0));
     }
 
+    @DisplayName("전체 할인 금액 구하기")
+    @ParameterizedTest
+    @CsvSource({"7,5646", "8,9792", "13,6246", "21,7046", "23,11292",
+            "24,8346", "25,8446", "26,4046"})
+    void getTotalDiscountPriceTest(String date, int price) {
+        addOrders();
+        EventDate eventDate = new EventDate(date);
+
+        Discount discount = new Discount(orders, eventDate);
+        assertEquals(price, discount.getTotalDiscountPrice());
+    }
+
     private void addOrders() {
         orders.add(new Order("양송이수프-1"));
         orders.add(new Order("타파스-1"));
