@@ -13,7 +13,7 @@ public class DecemberEventPlanner {
         this.outputView = new OutputView();
     }
 
-    public void start() {
+    public void on() {
         Orders orders = inputView.readInput();
         outputView.output(orders);
     }
