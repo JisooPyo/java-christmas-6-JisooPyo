@@ -3,28 +3,35 @@ package christmas.domain.discount;
 import christmas.domain.date.EventDate;
 import christmas.domain.order.Order;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Discount {
+    private final Map<String, Integer> allDiscount;
     private final List<Order> orders;
     private final EventDate eventDate;
 
     public Discount(List<Order> orders, EventDate eventDate) {
         this.orders = orders;
         this.eventDate = eventDate;
+        this.allDiscount = addDiscounts();
     }
 
     public Map<String, Integer> getTotalDiscount() {
-        Map<String, Integer> totalDiscount = new HashMap<>();
+        return Collections.unmodifiableMap(allDiscount);
+    }
+
+    public Map<String, Integer> addDiscounts() {
+        Map<String, Integer> discounts = new HashMap<>();
         if (!isMoreThanTenThousand()) {
-            return totalDiscount;
+            return discounts;
         }
-        addChristmasDiscount(totalDiscount);
-        addDayDiscount(totalDiscount);
-        addSpecialDiscount(totalDiscount);
-        return totalDiscount;
+        addChristmasDiscount(discounts);
+        addDayDiscount(discounts);
+        addSpecialDiscount(discounts);
+        return discounts;
     }
 
     private boolean isMoreThanTenThousand() {
@@ -60,6 +67,14 @@ public class Discount {
         if (discount != 0) {
             totalDiscount.put("특별 할인", discount);
         }
+    }
+
+    public int getTotalDiscountPrice() {
+        int price = 0;
+        for (String key : allDiscount.keySet()) {
+            price += allDiscount.get(key);
+        }
+        return price;
     }
 
 }
