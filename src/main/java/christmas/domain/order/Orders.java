@@ -14,14 +14,16 @@ public class Orders {
     private final EventDate eventDate;
     private final Discount discount;
     private final int maxOrder = 20;
-    private final Gift gift = new Gift(getOrdersCost());
-    private final Badge badge = new Badge(getTotalBenefitCost());
+    private final Gift gift;
+    private final Badge badge;
 
     public Orders(String orderInput, EventDate eventDate) {
         this.eventDate = eventDate;
         this.orders = order(orderInput);
         validate(orders);
         this.discount = new Discount(orders, eventDate);
+        this.gift = new Gift(getOrdersCost());
+        this.badge = new Badge(getTotalBenefitCost());
     }
 
     private List<Order> order(String orderInput) {
