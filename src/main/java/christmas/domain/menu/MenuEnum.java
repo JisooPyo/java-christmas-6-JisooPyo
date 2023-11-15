@@ -1,6 +1,6 @@
 package christmas.domain.menu;
 
-import java.util.Arrays;
+import christmas.error.CustomError;
 
 public enum MenuEnum {
     MUSHROOM_SOUP("양송이수프", TypeEnum.APPETIZER, 6000),
@@ -31,7 +31,7 @@ public enum MenuEnum {
                 return menuEnum;
             }
         }
-        return null;
+        throw new IllegalArgumentException(CustomError.INVALID_ORDER.getMessage());
     }
 
     public String getName() {

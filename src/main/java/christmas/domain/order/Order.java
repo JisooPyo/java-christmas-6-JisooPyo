@@ -1,17 +1,17 @@
 package christmas.domain.order;
 
-import christmas.domain.menu.Menu;
+import christmas.domain.menu.MenuEnum;
 import christmas.error.CustomError;
 
 import java.util.regex.Pattern;
 
 public class Order {
-    private final Menu menu;
+    private final MenuEnum menuEnum;
     private final int count;
 
     public Order(String order) {
         validate(order);
-        this.menu = findMenu(order);
+        this.menuEnum = findMenu(order);
         this.count = findCount(order);
     }
 
@@ -21,10 +21,10 @@ public class Order {
         }
     }
 
-    private Menu findMenu(String order) {
+    private MenuEnum findMenu(String order) {
         int seperationIndex = order.indexOf("-");
         String checkMenu = order.substring(0, seperationIndex);
-        return new Menu(checkMenu);
+        return MenuEnum.getMenuEnum(checkMenu);
     }
 
     private int findCount(String order) {
@@ -40,7 +40,7 @@ public class Order {
         return this.count;
     }
 
-    public Menu getMenu() {
-        return menu;
+    public MenuEnum getMenu() {
+        return menuEnum;
     }
 }
