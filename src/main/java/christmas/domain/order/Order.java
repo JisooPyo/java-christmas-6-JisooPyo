@@ -37,11 +37,11 @@ public class Order {
     }
 
     public int getCost() {
-        return this.menuEnum.getCost() * this.count;
+        return menuEnum.getCost() * count;
     }
 
     public int getCount() {
-        return this.count;
+        return count;
     }
 
     public MenuEnum getMenu() {
