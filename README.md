@@ -159,4 +159,4 @@
 
 ## 🖼 도메인 분석
 
-![image](https://github.com/JisooPyo/java-christmas-6-JisooPyo/assets/130378232/83d27270-5ba7-4a68-a8ff-1479a689f56c)
+![2023-11-14 21 25 10](https://github.com/JisooPyo/java-christmas-6-JisooPyo/assets/130378232/95cb838e-3aa3-4113-b0da-f987b8b98881)
